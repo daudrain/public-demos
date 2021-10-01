@@ -3,6 +3,7 @@
 
 #include <ImFusion/Base/Algorithm.h>
 #include <ImFusion/Base/AlgorithmListener.h>
+#include <ImFusion/Stream/ImageStream.h>
 
 #include <memory>
 
@@ -43,5 +44,6 @@ namespace ImFusion
 		SharedImageSet* m_imgIn = nullptr;           ///< Input image to process
 		std::unique_ptr<SharedImageSet> m_imgOut;    ///< Output image after processing
 		int m_factor = 2;                            ///< Downsampling factor
+		ImageStream* imgStream;
 	};
 }

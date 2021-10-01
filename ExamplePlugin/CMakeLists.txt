@@ -2,6 +2,8 @@
 project(DemoPlugin)
 cmake_minimum_required(VERSION 3.2.0)
 
+enable_testing()
+
 # Locate the ImFusion SDK.
 # List required modules/plugins in the COMPONENTS section (e.g. COMPONENTS ImFusionSeg ImFusionReg).
 find_package(ImFusionLib REQUIRED)
@@ -45,3 +47,6 @@ target_link_libraries(DemoPlugin PRIVATE
 imfusion_set_common_target_properties()
 imfusion_provide_ide_instructions()
 
+add_test(NAME ImFusionSuite COMMAND /usr/bin/ImFusionSuite)
+set_tests_properties(ImFusionSuite PROPERTIES
+    ENVIRONMENT IMFUSION_PLUGIN_PATH=${CMAKE_BINARY_DIR}/lib)

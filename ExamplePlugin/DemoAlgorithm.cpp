@@ -2,6 +2,7 @@
 
 #include <ImFusion/Base/DataList.h>
 #include <ImFusion/Base/ImageProcessing.h>
+#include <ImFusion/Base/Log.h>
 #include <ImFusion/Base/MemImage.h>
 #include <ImFusion/Base/SharedImage.h>
 #include <ImFusion/Base/SharedImageSet.h>
@@ -23,7 +24,11 @@ namespace ImFusion
 		SharedImageSet* img = data.getImage(Data::UNKNOWN);    // in our case, any image is fine
 		if (img == nullptr)
 			return false;
-
+		auto imgStream = dynamic_cast<ImageStream*>(data.get(Data::IMAGESTREAM));
+		if (imgStream)
+		{
+			LOG_INFO("Found ImageStream");
+		}
 		// requirements are met, create the algorithm if asked
 		if (a)
 		{
